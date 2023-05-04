@@ -13,9 +13,12 @@ Este curso considerará as principais abordagens contemporâneas para mensuraç�
 
 O curso será ministrado de forma síncrona (em tempo real) via Zoom. Não haverá exames ou exercícios. As leituras adicionais irão reforçar e estender o minicurso e fornecer exemplos substantivos da aplicação desses modelos em ciência política.
 
-Livros: 
-**De Ayala, R.J. 2013. The theory and practice of item response theory. Guilford.**
-**Finch, W.H. and French, B.F., 2015. Latent variable modeling with R. Routledge.**
+**Bibliografia:**
+
+De Ayala, R.J. 2013. The theory and practice of item response theory. Guilford.
+
+Finch, W.H. and French, B.F., 2015. Latent variable modeling with R. Routledge.
+
 Personality Project https://www.personality-project.org/r/book/
-![image](https://user-images.githubusercontent.com/17950763/236301283-925d6aaf-b399-410c-8551-81722591e08d.png)
+
 
