@@ -1,5 +1,5 @@
 # IRT
-Minicurso de Teoria de Resposta ao Item
+Minicurso de Teoria de Resposta ao Item (IRT)
 
 VII Workshop de Comportamento Político e Opinião Pública
 
