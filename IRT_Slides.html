@@ -189,7 +189,7 @@ $$
 x_3 = α_3T_3 + μ_3
 $$
 --
-&lt;img src="APSR.png" width="1816" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/APSR.png" width="1816" style="display: block; margin: auto;" /&gt;
 ---
 # O que é IRT?
 - Em psicometria, a teoria da resposta ao item (**IRT**) (ou *teoria do traço latente*) é um paradigma para o desenvolvimento, a análise e a pontuação de testes, questionários e instrumentos semelhantes que medem habilidades, atitudes ou outras variáveis.
@@ -259,7 +259,7 @@ A violação do pressuposto de independência condicional pode ocorrer por vári
   
   - As respostas a esse instrumento constituem nossas "observações comportamentais." 
 
-&lt;img src="1PL.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/1PL.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ???
 Dessa forma, a proficiência em matemática é considerada uma variável latente e, no contexto apresentado, isso significa que ela é conceituada como um contínuo latente. 
@@ -276,7 +276,7 @@ Uma implicação da localização de pessoas e itens no mesmo continuum é que �
 
 ---
 # 1-Parameter Logistic Model
-&lt;img src="1PL.png" width="1896" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/1PL.png" width="1896" style="display: block; margin: auto;" /&gt;
 - Usamos a letra grega **(DELTA)** para representar a localização de um item e (delta_j) para representar a j*-ésima* localização do item nesse continuum. 
 
 $$
@@ -286,7 +286,7 @@ $$
 $$
 ---
 # 1-Parameter Logistic Model
-&lt;img src="1PL.png" width="1896" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/1PL.png" width="1896" style="display: block; margin: auto;" /&gt;
 - A letra grega **θ** é usada para representar a localização da pessoa nesse continuum. 
   - Neste exemplo, a posição A da pessoa reflete sua proficiência em matemática.  
 
@@ -307,7 +307,7 @@ Por outro lado, os itens "mais difíceis" são aqueles que as pessoas com alta p
 Eu vou voltar nesse conceito em 1 minuto.
 ---
 # 1-Parameter Logistic Model
-&lt;img src="1PL.png" width="1896" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/1PL.png" width="1896" style="display: block; margin: auto;" /&gt;
 .center[**Como queremos modelar probabilidades, usamos a função logística devido à sua simplicidade.**]
 --
 
@@ -397,7 +397,7 @@ plot(p, x=delta)
 
 - A figura abaixo mostra uma série de **IRF**s sobrepostas aos dados do item. Como podemos ver, a IRF Rasch prevista não é tão acentuada quanto a função de resposta observada.
 
-&lt;img src="1pl-rash.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/1pl-rash.png" width="55%" style="display: block; margin: auto;" /&gt;
 --
 
 - Para corresponder melhor à linha de rastreamento empírica, precisamos aumentar a inclinação da **IRF**. 
@@ -435,7 +435,7 @@ $$
 
 - Aumentar os valores de **α** tende a melhorar o ajuste do modelo de IRT aos dados.
 
-&lt;img src="1pl-rash.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/1pl-rash.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ???
 A falta de um subscrito em ALPHA significa que α não varia entre os itens.
@@ -454,7 +454,7 @@ Os itens com ALPHAs maiores (ou seja, linhas de regressão logit e IRFs mais ín
 
   - Por exemplo, um item fácil funciona entre os examinandos com baixa habilidade e um item difícil funciona entre os examinandos com alta habilidade; portanto, a dificuldade é um índice de localização. 
   
-&lt;img src="difficulty.png" width="65%" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/difficulty.png" width="65%" style="display: block; margin: auto;" /&gt;
 --
 - A segunda propriedade é a **discriminação** **α**, isto é, a capacidade de um item diferenciar os indivíduos com habilidades diferentes em relação ao item em questão. 
   - Essa propriedade reflete essencialmente a inclinação da IRF. 
@@ -508,13 +508,15 @@ Como no caso do modelo 1PL, os dados para o 2PL precisam ser dicotômicos (0 ou 
  
 - À medida que os valores de **α** mudam de **0.5** para **3.0**, as **IRF**s correspondentes tornam-se progressivamente mais **íngremes**. 
 
-&lt;img src="2PL.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/2PL.png" width="45%" style="display: block; margin: auto;" /&gt;
 ???
 Esse local comum corresponde ao ponto de interseção de todas as cinco IRFs e é δ1 = δ2 = δ3 = δ4 = δ5 = 1,0.
 
 Por exemplo, comparando o item 1 (ALPHA_1 = 0,5) com o item 5 (ALPHA_5 = 3,0), observa-se que a inclinação do item 1 é substancialmente menor do que a do item 5. 
 
 em que θ é o parâmetro de localização da pessoa e δj e αj são os parâmetros de localização e discriminação do item j, respectivamente, e o intercepto (constante) é γj = -αjδj; o subtítulo em α indica que cada item j tem seu próprio parâmetro de discriminação. Com o modelo 2PL, o desvio logístico ou logit, αj(θ - δj), contém os dois parâmetros do item, δ_j e α_j
+
+É importante entender o modelo de 2-PL, pois a partir dele podemos expandir para diversos modelos avançados de IRT.
 
 ---
 # 2-parameter logistic model
@@ -627,7 +629,7 @@ Os problemas na estimativa do χj podem influenciar a estimativa dos outros par�
 - Ou seja, DIF acontence quando há uma diferença entre as probabilidades condicionais de uma resposta de 1 para dois grupos (e.g., mulheres vs. homens).
 
 ---
-# Funcionamento Diferencial do item (DIF)
+# Funcionamento diferencial do item (DIF)
 
 - Graficamente, o DIF pode ser representado como a diferença entre dois IRFs.
 
@@ -642,8 +644,12 @@ Os problemas na estimativa do χj podem influenciar a estimativa dos outros par�
 O item apresentado na figura abaixo favorece os membros do grupo de Referência (linha sólida) em relação aos do grupo Focal. Isto é, a probabilidade de uma resposta de 1 é maior para os membros do grupo de referência do que para os membros do grupo focal.
 
 Como o DIF examina as diferenças nas probabilidades condicionais de Y entre os grupos, vamos chamar os grupos de "referência" e "focal".
+
+- DIF uniforme: parâmetros de dificuldade diferem entre os grupos.
+- DIF Não-uniforme: parâmetros de discriminação diferem entre os grupos.
+
 ---
-# Funcionamento Diferencial do item (DIF)
+# Funcionamento diferencial do item (DIF)
 
 - Do ponto de vista do IRT, a existência de DIF significa que as estimativas dos parâmetros do item DIF não são invariantes entre os grupos manifestos.
 
@@ -653,6 +659,47 @@ Como o DIF examina as diferenças nas probabilidades condicionais de Y entre os 
   - O DIF pode ser conceituado como uma forma de multidimensionalidade que ocorre quando um item mede várias dimensões e quando os grupos manifestos diferem em suas localizações relativas uns aos outros nessa(s) variável(eis) latente(s) não primária(s).
 ???
 Na demonstração empírica a seguir, vamos sempre cofificar o grupo de Referência como 0, e o grupo Foca como 1 e vamos trabalhar apenas com DIF com dados de resposta dicotômica.
+---
+# Funcionamento diferencial do item (DIF)
+
+- Teste de **Mantel-haenszel** (MH) para detecção de DIF uniforme
+
+  - Essencialmente, os indivíduos são agrupados com base em suas pontuações totais na escala. Em cada um desses grupos de pontuação, a relação entre os membros do grupo (por exemplo, **gênero**) e a resposta ao item (por exemplo, **certo ou errado**) é avaliada.
+
+  - O teste de MH é uma abordagem baseada na tabela de contingência do qui-quadrado que examina as diferenças entre os grupos de referência e focal em todos os itens do teste, um a um. 
+  
+  - Queremos ver um qui-quadrado pequeno aqui, porque queremos deixar de rejeitar a hipótese nula de DIF.
+  
+---
+# Funcionamento diferencial do item (DIF)
+- **Regressão Logística** (LR): outro método popular e altamente eficaz para investigar o DIF.
+
+- A método por LR para a detecção de DIF envolve a execução de uma análise separada para cada item. 
+  
+  - A partir dos resultados da regressão logística, o DIF seria indicado se os indivíduos com correspondência de habilidade tivessem curvas de regressão logística significativamente diferentes. 
+  
+  - Por outro lado, se as curvas de ambos os grupos forem iguais, então o item não é tendencioso e, portanto, o DIF não está presente.
+
+$$
+ln\frac{p_i}{1 - p_i} = \beta_0 + \beta_1(Score_i)+\beta_2(group)+\beta_3(group * Score_i)
+$$
+
+???
+  - As variáveis independentes incluídas na análise são a associação ao grupo, uma variável de correspondência de habilidade, normalmente a pontuação total, e um termo de interação entre os dois.
+  
+Neste caso, p_i é a probabilidade de endossar o item, ou uma resposta correta,
+Score_i é a pontuação na escala total deixando de fora o item que está sendo avaliado para DIF,
+e group é a variável de agrupamento (por exemplo, gênero).
+
+O coeficiente β2 fornece a estimativa de DIF uniforme,
+e quando significativamente diferente de zero indica a presença de tal.
+
+Da mesma forma, β3 é a estimativa do DIF não uniforme.
+
+Devo dizer que DIF é uma área de pesquisa muito ativa, com muitas mudanças ocorrendo com frequência.
+
+Maior vantagem do LR sobre o MH é que pode detectator DIF uniforme e não-uniforme em um só teste.
+
 ---
 # Mini-curso de IRT
 
@@ -670,19 +717,20 @@ Na demonstração empírica a seguir, vamos sempre cofificar o grupo de Referên
 - Personality Project: https://www.personality-project.org/r/book/
 
 - Slides criados com o pacote R [xaringan](https://github.com/yihui/xaringan).
-&lt;br&gt;
-&lt;br&gt;
+
+- GitHub: https://www.github.com/robertvidigal/IRT
 &lt;br&gt;
 &lt;br&gt;
 &lt;br&gt;
 .center[*When you cannot measure what you are speaking about, when you cannot express it in numbers, your knowledge is of a meagre and unsatisfactory kind: it may be the beginning of knowledge, but you have scarcely advanced to the state of science, whatever the matter may be.* **(Kelvin, 1891)**.]
 ???
+Existem muitos bons trabalhos que descrevem os vários métodos de DIF, renunciaremos aos detalhes técnicos deles aqui e, em vez disso, nos concentraremos na implementação de vários deles usando o R. 
+
+No entanto, recomendo aqueles interessados em usar um ou mais dos métodos que demonstramos consultem as referências associadas para saber mais sobre como os métodos funcionam e sob quais condições eles são mais apropriados.
+
 Agora que terminamos essa breve introdução aos modelos de IRT logísticos, e revisamos os modelos que descrevem os itens em termos de dificuldade, discriminação e correção para adivinhação. 
 
-Vamos passar para a parte prática no R. 
-
-
-
+VAMOS PARA O R STUDIO
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
