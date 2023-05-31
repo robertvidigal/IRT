@@ -516,6 +516,8 @@ Por exemplo, comparando o item 1 (ALPHA_1 = 0,5) com o item 5 (ALPHA_5 = 3,0), o
 
 em que θ é o parâmetro de localização da pessoa e δj e αj são os parâmetros de localização e discriminação do item j, respectivamente, e o intercepto (constante) é γj = -αjδj; o subtítulo em α indica que cada item j tem seu próprio parâmetro de discriminação. Com o modelo 2PL, o desvio logístico ou logit, αj(θ - δj), contém os dois parâmetros do item, δ_j e α_j
 
+É importante entender o modelo de 2-PL, pois a partir dele podemos expandir para diversos modelos avançados de IRT.
+
 ---
 # 2-parameter logistic model
 
@@ -662,20 +664,17 @@ Na demonstração empírica a seguir, vamos sempre cofificar o grupo de Referên
 
 - Teste de **Mantel-haenszel** (MH) para detecção de DIF uniforme
 
-  - Essencialmente, os indivíduos são agrupados com base em suas pontuações totais na escala. Em cada um desses grupos de pontuação, a relação entre os membros do grupo (por exemplo, gênero) e a resposta ao item (por exemplo, certo ou errado) é avaliada.
+  - Essencialmente, os indivíduos são agrupados com base em suas pontuações totais na escala. Em cada um desses grupos de pontuação, a relação entre os membros do grupo (por exemplo, **gênero**) e a resposta ao item (por exemplo, **certo ou errado**) é avaliada.
 
   - O teste de MH é uma abordagem baseada na tabela de contingência do qui-quadrado que examina as diferenças entre os grupos de referência e focal em todos os itens do teste, um a um. 
   
-  - O continuum de habilidades, definido pelas pontuações totais do teste, é dividido em **k** intervalos discretos que servem de base para a correspondência entre os membros de ambos os grupos.
-  
   - Queremos ver um qui-quadrado pequeno aqui, porque queremos deixar de rejeitar a hipótese nula de DIF.
-
+  
 ---
 # Funcionamento diferencial do item (DIF)
 - **Regressão Logística** (LR): outro método popular e altamente eficaz para investigar o DIF.
 
 - A método por LR para a detecção de DIF envolve a execução de uma análise separada para cada item. 
-  - As variáveis independentes incluídas na análise são a associação ao grupo, uma variável de correspondência de habilidade, normalmente a pontuação total, e um termo de interação entre os dois.
   
   - A partir dos resultados da regressão logística, o DIF seria indicado se os indivíduos com correspondência de habilidade tivessem curvas de regressão logística significativamente diferentes. 
   
@@ -686,15 +685,20 @@ ln\frac{p_i}{1 - p_i} = \beta_0 + \beta_1(Score_i)+\beta_2(group)+\beta_3(group 
 $$
 
 ???
-In this case, p_i is the probability of endorsing the item, or a correct response, 
-Score_i is the score on the total scale leaving out the item being assessed for DIF, 
-and group is the grouping variable (e.g. gender). 
+  - As variáveis independentes incluídas na análise são a associação ao grupo, uma variável de correspondência de habilidade, normalmente a pontuação total, e um termo de interação entre os dois.
+  
+Neste caso, p_i é a probabilidade de endossar o item, ou uma resposta correta,
+Score_i é a pontuação na escala total deixando de fora o item que está sendo avaliado para DIF,
+e group é a variável de agrupamento (por exemplo, gênero).
 
-The coefficient β2 provides the estimate of uniform DIF, 
-and when significantly different from zero indicates the presence of such. 
-Likewise, β3 is the estimate of nonuniform DIF.
+O coeficiente β2 fornece a estimativa de DIF uniforme,
+e quando significativamente diferente de zero indica a presença de tal.
+
+Da mesma forma, β3 é a estimativa do DIF não uniforme.
 
 Devo dizer que DIF é uma área de pesquisa muito ativa, com muitas mudanças ocorrendo com frequência.
+
+Maior vantagem do LR sobre o MH é que pode detectator DIF uniforme e não-uniforme em um só teste.
 
 ---
 # Mini-curso de IRT
