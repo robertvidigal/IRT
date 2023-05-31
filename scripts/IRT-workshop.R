@@ -375,9 +375,7 @@ lordTF.outR
 
 # NEXT STEPS TO CONTINUE YOUR IRT JOURNEY
 # # --------------------------------------------------------------------------------------
-
-#
-#
-#
-#
-#
+# Rasch Models for Ordered Polytomous Data (PC Model)
+# Non-Rasch Models for Ordered Polytomous Data (GPC and GR Models)
+# Nominal Polytomous Data (NRM)
+# Models for Multidimensional Data (MIRT)
