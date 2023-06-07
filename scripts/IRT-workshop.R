@@ -7,12 +7,9 @@ rm(list=ls()); gc(full=T); objects()
 set.seed(10012)
 
 # Data Collected in Sept 2018.
-gmo<-read.csv("~/Documents/IRT-Workshop/data/GMO_MTurk_WORK-CLEAN.csv", header=TRUE)
+gmo<-read.csv("~/Documents/IRT/data/GMO_MTurk_WORK-CLEAN.csv", header=TRUE)
 #write.csv(gmo, "~/Documents/IRT-Workshop/GMO_MTurk_WORK-CLEAN.csv", row.names=F)
 str(gmo); names(gmo)
-
-#gmo <- gmo %>% mutate_at(c("pkT_medmarij","pkF_nafta", "pkT_parisagree", "pkF_guantanamo",
-#                           "pkT_gdpgrow", "pkF_deficit2018"), ~as.numeric(dplyr::recode(., `-2`=0, `-1`=0, `1`=0.5, `2`=1)))
 
 # # --------------------------------------------------------------------------------------
 # VARIABLES 
