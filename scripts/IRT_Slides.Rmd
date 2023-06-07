@@ -187,9 +187,9 @@ $$
 x_3 = α_3T_3 + μ_3
 $$
 --
-```{r apsr, echo=F, fig.align='center'}
-knitr::include_graphics("~/Documents/IRT/figs/APSR.png") 
-```
+.center[
+<img src="https://i.ibb.co/bz6B7St/APSR.png" width="800" height="200"/>
+]
 ---
 # O que é IRT?
 - Em psicometria, a teoria da resposta ao item (**IRT**) (ou *teoria do traço latente*) é um paradigma para o desenvolvimento, a análise e a pontuação de testes, questionários e instrumentos semelhantes que medem habilidades, atitudes ou outras variáveis.
@@ -259,9 +259,9 @@ A violação do pressuposto de independência condicional pode ocorrer por vári
   
   - As respostas a esse instrumento constituem nossas "observações comportamentais." 
 
-```{r 1pl-a, echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("~/Documents/IRT/figs/1PL.png") 
-```
+.center[
+<img src="https://i.ibb.co/sVcMKMg/1PL.png" width="500" height="200"/>
+]
 
 ???
 Dessa forma, a proficiência em matemática é considerada uma variável latente e, no contexto apresentado, isso significa que ela é conceituada como um contínuo latente. 
@@ -278,9 +278,9 @@ Uma implicação da localização de pessoas e itens no mesmo continuum é que �
 
 ---
 # 1-Parameter Logistic Model
-```{r 1pl-aa, echo=F, fig.align='center'}
-knitr::include_graphics("~/Documents/IRT/figs/1PL.png") 
-```
+.center[
+<img src="https://i.ibb.co/sVcMKMg/1PL.png" width="500" height="200"/>
+]
 - Usamos a letra grega **(DELTA)** para representar a localização de um item e (delta_j) para representar a j*-ésima* localização do item nesse continuum. 
 
 $$
@@ -290,9 +290,9 @@ $$
 $$
 ---
 # 1-Parameter Logistic Model
-```{r 1pl-aaa, echo=F, fig.align='center'}
-knitr::include_graphics("~/Documents/IRT/figs/1PL.png") 
-```
+.center[
+<img src="https://i.ibb.co/sVcMKMg/1PL.png" width="500" height="200"/>
+]
 - A letra grega **θ** é usada para representar a localização da pessoa nesse continuum. 
   - Neste exemplo, a posição A da pessoa reflete sua proficiência em matemática.  
 
@@ -313,9 +313,9 @@ Por outro lado, os itens "mais difíceis" são aqueles que as pessoas com alta p
 Eu vou voltar nesse conceito em 1 minuto.
 ---
 # 1-Parameter Logistic Model
-```{r 1pl-aaaa, echo=F, fig.align='center'}
-knitr::include_graphics("~/Documents/IRT/figs/1PL.png") 
-```
+.center[
+<img src="https://i.ibb.co/sVcMKMg/1PL.png" width="500" height="200"/>
+]
 .center[**Como queremos modelar probabilidades, usamos a função logística devido à sua simplicidade.**]
 --
 
@@ -400,9 +400,10 @@ plot(p, x=delta)
 
 - A figura abaixo mostra uma série de **IRF**s sobrepostas aos dados do item. Como podemos ver, a IRF Rasch prevista não é tão acentuada quanto a função de resposta observada.
 
-```{r 1pl-rash, echo=F, fig.align='center', out.width = '55%'}
-knitr::include_graphics("~/Documents/IRT/figs/1pl-rash.png") 
-```
+.center[
+<img src ="https://i.ibb.co/hXyCpRG/1pl-rash.png" width=625 height=300>
+]
+
 --
 
 - Para corresponder melhor à linha de rastreamento empírica, precisamos aumentar a inclinação da **IRF**. 
@@ -440,9 +441,9 @@ $$
 
 - Aumentar os valores de **α** tende a melhorar o ajuste do modelo de IRT aos dados.
 
-```{r 1pl-rash2, echo=F, fig.align='center', out.width = '55%'}
-knitr::include_graphics("~/Documents/IRT/figs/1pl-rash.png") 
-```
+.center[
+<img src ="https://i.ibb.co/hXyCpRG/1pl-rash.png" width=425 height=200>
+]
 
 ???
 A falta de um subscrito em ALPHA significa que α não varia entre os itens.
@@ -460,10 +461,11 @@ Os itens com ALPHAs maiores (ou seja, linhas de regressão logit e IRFs mais ín
 - De acordo com a teoria de resposta ao item, a **dificuldade** (DELTA) de um item descreve onde o item funciona ao longo da escala de habilidade. 
 
   - Por exemplo, um item fácil funciona entre os examinandos com baixa habilidade e um item difícil funciona entre os examinandos com alta habilidade; portanto, a dificuldade é um índice de localização. 
-  
-```{r diff, echo=F, fig.align='center', out.width = '65%'}
-knitr::include_graphics("~/Documents/IRT/figs/difficulty.png") 
-``` 
+
+.center[
+<img src ="https://i.ibb.co/892MSTc/difficulty.png" width=375 height=150>
+]  
+
 --
 - A segunda propriedade é a **discriminação** **α**, isto é, a capacidade de um item diferenciar os indivíduos com habilidades diferentes em relação ao item em questão. 
   - Essa propriedade reflete essencialmente a inclinação da IRF. 
@@ -517,9 +519,9 @@ Como no caso do modelo 1PL, os dados para o 2PL precisam ser dicotômicos (0 ou 
  
 - À medida que os valores de **α** mudam de **0.5** para **3.0**, as **IRF**s correspondentes tornam-se progressivamente mais **íngremes**. 
 
-```{r 2PL, echo=F, fig.align='center', out.width = '45%'}
-knitr::include_graphics("~/Documents/IRT/figs/2PL.png") 
-``` 
+.center[
+<img src="https://i.ibb.co/tXvZNLQ/2PL.png" height=400 width=525>
+]
 ???
 Esse local comum corresponde ao ponto de interseção de todas as cinco IRFs e é δ1 = δ2 = δ3 = δ4 = δ5 = 1,0.
 
@@ -576,7 +578,7 @@ $$
 Em outras palavras, a probabilidade de uma resposta de 1 para um indivíduo com uma localização infinitamente baixa é χj.
 ---
 # 3-parameter logistic model
-Para determinar a função de resposta de adivinhação pseudoaleatória, precisamos considerar CHI_j e a probabilidade
+Para determinar a função de resposta de adivinhação pseudoaleatória, precisamos considerar **χj** e a probabilidade
 de uma resposta de 0, considerando o modelo 2PL.
 
 $$
@@ -584,7 +586,7 @@ $$
 $$
 --
 
-- Quando uma pessoa é bem-sucedida no item **j** com base apenas no acaso (**p_j**=0), a probabilidade é igual à resposta de adivinhação pseudoaleatória (**CHI_j**).
+- Quando uma pessoa é bem-sucedida no item **j** com base apenas no acaso (**p_j**=0), a probabilidade é igual à resposta de adivinhação pseudoaleatória (**χj**).
 
 --
 
@@ -631,7 +633,7 @@ Em geral, a estimativa de χj pode ser problemática para alguns itens devido à
 
 Os problemas na estimativa do χj podem influenciar a estimativa dos outros parâmetros do item.
 ---
-# Funcionamento Diferencial do item (DIF)
+# Funcionamento diferencial do item (DIF)
 
 - O funcionamento diferencial do item (DIF) é uma característica estatística de um item que se refere às diferenças no funcionamento dos itens entre grupos, geralmente demográficos.
 
@@ -723,7 +725,7 @@ Maior vantagem do LR sobre o MH é que pode detectator DIF uniforme e não-unifo
   - ICC & IIC
   - DIF
 
-- R, R Markdown, Data Science e mais: https://bookdown.org/
+- Tutoriais de R, R Markdown, Data Science e outros mais: https://bookdown.org/
 
 - Personality Project: https://www.personality-project.org/r/book/
 
