@@ -34,7 +34,7 @@ code_font_google = google_font("Fira Mono")
 
 - **Variáveis latentes.** 
   - *Análise Fatorial não será abordada aqui (EFA, CFA, PCA).*
-  - *Nem modelos mais complexos de IRT (GRM, GCPM, Nominal, MIRT).*
+  - *Nem modelos mais complexos de IRT (GRM, GPCM, Nominal, MIRT).*
   
 --
 
@@ -48,7 +48,7 @@ code_font_google = google_font("Fira Mono")
 
 - **Programação em R**
   - Item-level analysis.
-  - Modelo 1PL *a.k.a. "Rash" model*
+  - Modelo 1PL *a.k.a. Modelo de "Rash"*
   - Modelos 2PL & 3PL
   - IIC & ICC
   - DIF
@@ -70,9 +70,11 @@ A Teoria da Resposta ao Item é usada em muitas disciplinas, como sociologia, ci
 ---
 # Introdução
 
-- A ciência política tende a lidar mais com questões de estimativa do que com problemas de mensuração.
+- A ciência política tende a lidar mais com questões de **estimativa** do que com problemas de **mensuração**.
 
-- Em ciência política as técnicas estatísticas vêm da econometria, que não lida muito com mensuração.
+  - Em ciência política as técnicas estatísticas vêm da econometria, que não lida muito com mensuração.
+
+--
 
 - O que entendemos por mensuração? **O estudo das propriedades das unidades que nos interessam.**
 
@@ -93,9 +95,10 @@ In effect, this is analogous to Stevens’s (1946) definition of measurement in 
 
 - Como comparamos nossas unidades? 
 
-- Como sistematizamos isso?
+- Como sistematizamos?
 
-- Como observamos as propriedades das unidades sociais? **A maioria das tentativas tende a utilizar perguntas em um questionário.**
+- Como observamos as propriedades das unidades sociais? 
+  - **A maioria das tentativas tende a utilizar perguntas em um questionário.**
   
 --
 
@@ -103,7 +106,7 @@ In effect, this is analogous to Stevens’s (1946) definition of measurement in 
 
 - Não existe uma fórmula geral ou um "Santo Graal", mas **boas estratégias de mensuração são baseadas em boas teorias**. 
 .center[
-<img src="https://static.historiadomundo.com.br/conteudo/images/o-santo-graal-foi-uma-das-lendas-mais-conhecidas-toda-idade-media-5cb09971d8c16.jpg" width="300" height="200"/>
+<img src="https://static.historiadomundo.com.br/conteudo/images/o-santo-graal-foi-uma-das-lendas-mais-conhecidas-toda-idade-media-5cb09971d8c16.jpg" width="225" height="175"/>
 ]
 
 ---
@@ -120,17 +123,17 @@ In effect, this is analogous to Stevens’s (1946) definition of measurement in 
 
 - **Variável**: a medida empírica (operacionalizada) de um conceito. 
 
-- **Constructo**: fundamentalmente inobservável e somente indiretamente mensurável (e.g., respostas à perguntas em um questionário).
+- **Constructo**: inobservável e apenas indiretamente mensurável (e.g., respostas à perguntas em um questionário).
 
 --
   - Um **constructo** é um **conceito abstrato** que é especificamente pensado (ou "criado") para explicar um determinado fenômeno. 
   
-  - Um **constructo** pode ser um **conceito** unidimensional (e.g., peso), ou um conjunto de **conceitos** relacionados, como certos traços de personalidade.
+  - Um **constructo** pode ser um **conceito** unidimensional (e.g., peso), ou um conjunto de **conceitos** relacionados (e.g., traços de personalidade).
 
 ---
 # Conceitos, constructos, e variáveis latentes
 
-- A pesquisa científica requer definições operacionais que definam como constructos serão **medidos empiricamente**.
+- A pesquisa científica requer definições operacionais que definam como nossos constructos serão **medidos empiricamente**.
 
 --
 
@@ -138,11 +141,11 @@ In effect, this is analogous to Stevens’s (1946) definition of measurement in 
   
 --
 
-  - Por exemplo, **renda** deve ser definida em termos de **renda mensal ou anual**, renda antes ou depois de impostos, **renda pessoal ou familiar**, etc.
+  - Por exemplo, **renda** deve ser definida em termos de renda **mensal ou anual**, renda **antes ou depois de impostos**, renda **pessoal ou familiar**, etc.
   
 --
 
-  - Pode-se imaginar que constructos como **cinismo, personalidade ou autoritarismo** podem ser bastante difíceis de definir operacionalmente.
+  - Pode-se imaginar que constructos como **cinismo, personalidade** ou **autoritarismo** podem ser bastante difíceis de definir operacionalmente.
   
 ???
 Alguns conceitos como o peso de uma pessoa são precisos e objetivos, enquanto outros conceitos como a personalidade de uma pessoa podem ser mais abstratos e difíceis de serem visualizados. 
@@ -153,29 +156,31 @@ A distinção entre um constructo e um conceito é mais clara em construções m
 
 --
 
-- Em estatística, **variáveis latentes** (do latim: *lateo* (“está escondido”), em oposição a variáveis observáveis), não são diretamente observadas, mas sim inferidas a partir de variáveis que podemos medir empiricamente.
+- Em estatística, **variáveis latentes** (do latim: *lateo* “está escondido”), não são diretamente observadas, mas sim inferidas a partir de variáveis que podemos medir empiricamente.
   - **Latent Trait Models (LTM)** são modelos matemáticos que visam explicar variáveis observadas em termos de variáveis latentes.
 
 ---
 # Teoria Clássica de Mensuração
 
-- Escalas são desenhadas para capturar constructos e estudar as diferenças individuais (Lord, 1958).
+- Escalas são desenhadas para capturar **constructos** e estudar as diferenças individuais (Lord, 1958).
 
 - Propriedade inobservável **T**, mas podemos medir **x**. 
 
 --
 
-- Assumimos que as pontuações (*scores*) dos itens são compostas de duas medidas: a pontuação verdadeira (T) + termo de erro (E): **X = T + E**. 
-
-  - Por exemplo,  **religiosidade**, tem diferentes propriedades: crenças, comportamentos, valores, etc.
+- Assumimos que as pontuações (*scores*) dos itens são compostas de duas medidas: a pontuação verdadeira (**T**) + termo de erro (**E**): **X = T + E**. 
 
 --
 
-  - Por exemplo, **ansiedade**, tem diferentes características: sentimentos de inquietação até ataques de pânico.
+  - Por exemplo,  **religiosidade**, tem diferentes propriedades: **crenças, comportamentos, valores, etc**.
+
+--
+
+  - Por exemplo, **ansiedade**, tem diferentes características: **sentimentos de inquietação até ataques de pânico**.
   
 ---
 # Teoria Clássica de Mensuração
-- O problema fundamental é que **T** é não observável. Então, uma opção para reduzir o erro é mensurar diferentes propriedades do constructo **T**:
+- **O problema fundamental** é que **T** é não observável. Então, a melhor opção para reduzir o erro é mensurar diferentes propriedades do constructo **T**:
 
 $$
 x_1 = α_1T_1 + μ_1 
@@ -192,11 +197,11 @@ $$
 ]
 ---
 # O que é IRT?
-- Em psicometria, a teoria da resposta ao item (**IRT**) (ou *teoria do traço latente*) é um paradigma para o desenvolvimento, a análise e a pontuação de testes, questionários e instrumentos semelhantes que medem habilidades, atitudes ou outras variáveis.
+- Em **psicometria**, a teoria da resposta ao item (**IRT**) (ou *teoria do traço latente*) é um paradigma para o **desenvolvimento, a análise e a pontuação** de testes, questionários e instrumentos semelhantes que medem habilidades, atitudes ou outras variáveis.
 
 --
 
-- IRT é um conjunto de modelos matemáticos para analisar e inferir a relação entre traços latentes (característica ou atributo não observável) e suas manifestações (i.e., resultados observados, respostas de survey ou desempenho em exercícios).
+- IRT é um conjunto de **modelos matemáticos** para analisar e inferir a **relação entre traços latentes** (característica ou atributo não observável) **e suas manifestações** (i.e., resultados em um teste, respostas de survey ou desempenho em exercícios).
 
 --
 
@@ -209,14 +214,15 @@ $$
 ---
 # O que é IRT?
 
-- IRT pressupõe que o construto latente (e.g., estresse, conhecimento, atitudes) e os itens de uma medida estão organizados em um continuum não-observável (**θ**). 
+- IRT pressupõe que o construto latente (e.g., **estresse, interesse, atitudes**) e os itens de uma medida estão organizados em um continuum não-observável (**θ**). 
 
-  - Logo, o principal objetivo é estabelecer a posição de cada indivíduo nesse continuum (**θ**).
+  - Logo, o principal objetivo é estabelecer **posição** de cada **indivíduo** nesse **continuum** latente (**θ**).
 
 --
 
-- Qual é a relação entre o valor verdadeiro (**θ**) e o valor observado? Temos que levantar hipóteses sobre essa relação.
-  - Naturalmente, é necessário operacionalizar empiricamente nossas variávels de interesse.
+- **Qual é a relação entre o valor verdadeiro (**θ**) e o valor observado?** 
+  - Temos que levantar **hipóteses** sobre essa relação...
+  - Naturalmente, é necessário **operacionalizar** nossas variávels de interesse.
 
 --
 
@@ -224,15 +230,15 @@ $$
 **Vou começar com os pressupostos necessários para os modelos de **IRT**, e depois vou apresentar os 3 principais modelos introdutórios de **IRT**.**]
 ---
 # IRT: pressupostos
-**Ps modelos de IRT implicam em três pressupostos:**
+**Os modelos de IRT implicam em três pressupostos:**
 
-**1.** Unidimensionalidade.
+**1.Unidimensionalidade.** 
 - Um constructo unidimensional denotado por **θ**;
 
-**2.** Independência local ou condicional.
+**2. Independência local ou condicional.** 
 - "Independência local" dos itens (correlações entre itens são zero);
 
-**3.** Função de resposta ao item.
+**3. Função de resposta ao item.** 
 - A probabilidade de resposta de uma pessoa pode ser modelada por uma função de resposta ao item (IRF).
 
 ???
@@ -249,13 +255,15 @@ A violação do pressuposto de independência condicional pode ocorrer por vári
 
 ---
 # 1-Parameter Logistic Model
-- Exemplo: Suponha que estamos interessados em medir as proficiências de alunos em matemática.
+- Exemplo: Suponha que estamos interessados em medir a **proficiência em matemática**.
 
 --
 
   - Embora não possamos observar diretamente a proficiência em matemática, podemos inferir sua existência por meio de observações comportamentais. 
-  
-  - Logo, aplicamos m um instrumento (i.e., teste ou prova) com cinco perguntas aos nossos alunos. 
+
+--
+
+  - Logo, aplicamos um instrumento (i.e., teste ou prova) com **cinco perguntas** à pessoa **A**. 
   
   - As respostas a esse instrumento constituem nossas "observações comportamentais." 
 
@@ -281,7 +289,7 @@ Uma implicação da localização de pessoas e itens no mesmo continuum é que �
 .center[
 <img src="https://i.ibb.co/sVcMKMg/1PL.png" width="500" height="200"/>
 ]
-- Usamos a letra grega **(DELTA)** para representar a localização de um item e (delta_j) para representar a j*-ésima* localização do item nesse continuum. 
+- Usamos a letra grega **(δ)** para representar a localização de um item e (**δj**) para representar a j*-ésima* localização do item nesse continuum. 
 
 $$
 \delta_1 = –2
@@ -322,26 +330,28 @@ Eu vou voltar nesse conceito em 1 minuto.
 $$
 p(x) = \frac{e^z}{(1 + e^z)}
 $$
-em que **p(x)** é a probabilidade do valor de 1 quando o preditor assume o valor de **x**, **e** é uma constante igual a **2,7182** e **z** é uma combinação linear da(s) variável(is) preditora(s) e uma constante.
+em que **p(x)** é a probabilidade do valor de 1 quando o preditor assume o valor de **x**, **e** é uma constante igual a **2,7182** e **z** é uma combinação linear da(s) variável(is) preditora(s).
 
 ---
 # O "Modelo de Rasch"
-Para especificar **z**, Georg Rasch propôs a ideia de deixar z ser a distância entre **θ** e **(DELTA_j)** como um determinante importante da probabilidade de sua resposta (cf. Rasch 1980).
+Para especificar **z**, Georg Rasch propôs a ideia de deixar **z** ser a distância entre **θ** e (**δj**) como o determinante da probabilidade de resposta (cf. Rasch 1980).
 
 $$
-z = (θ – δj)
+z = (θ – \delta_j)
 $$
 --
 
-Portanto, esse modelo permitiria prever a probabilidade de uma resposta de 1 em função da localização do item e da pessoa.
+Portanto, esse modelo permitiria prever a probabilidade de uma resposta correta (i.e., 1) em função da localização do item e da pessoa.
  
 $$
 p(x_j = 1 |\theta, \delta_j) = \frac{e^{(\theta − \delta_j)}}{1 + e^{(\theta−\delta_j)}}
 $$
 --
-Esse modelo é chamado de **Modelo Rasch** (Rasch, 1980). 
+.center[
+Esse modelo é chamado de **Modelo de Rasch** (Rasch, 1980). 
+]
 
-Em palavras, essa equação diz que a probabilidade de uma resposta de 1 no item j é uma função da distância entre uma pessoa localizada em **θ** e o item localizado em **(DELTA)**.
+Essa equação diz que a probabilidade de uma resposta de 1 no item **j** é uma função da distância entre uma pessoa localizada em **θ** e o item localizado em **(δ)**.
 
 ???
 É provável que uma pessoa localizada em 0 responda corretamente aos itens localizados na extremidade inferior do continuum (por exemplo, o item 1 com um (delta_1 = -2). 
@@ -361,7 +371,7 @@ DELTA_J é a localização do item j no continuum latente.
 ---
 # Função de resposta ao item
 
-Como exemplo de uso do modelo Rasch para prever o comportamento da resposta, suponha que administramos um item de matemática localizado em DELTA=1 para indivíduos localizados em **θ**=0. 
+Usando o modelo de **Rasch** para prever o comportamento da resposta, suponha que administramos um item de matemática localizado em **δ**=1 para indivíduos localizados em **θ**=0. 
 
 ````{r}
 e=2.7183
@@ -393,25 +403,25 @@ Tais probabilidades quando representadas graficamente, mostram um padrão semelh
 ````{r, out.width='35%', fig.align='center'}
 plot(p, x=delta)
 ````
-- A linha produzida pelo modelo dado na equação é chamada de linha de rastreamento (Lazarsfeld, 1950) ou curva do item (Tucker, 1946). 
-  - Nós a chamaremos de função de resposta ao item (IRF). 
+- A linha produzida pelo modelo dado na equação é chamada de **linha de rastreamento** (Lazarsfeld, 1950) ou **curva do item** (Tucker, 1946). 
+  - Nós a chamaremos de **função de resposta ao item (IRF)**. 
 ---
 # Função de resposta ao item
 
 - A figura abaixo mostra uma série de **IRF**s sobrepostas aos dados do item. Como podemos ver, a IRF Rasch prevista não é tão acentuada quanto a função de resposta observada.
 
 .center[
-<img src ="https://i.ibb.co/hXyCpRG/1pl-rash.png" width=625 height=300>
+<img src ="https://i.ibb.co/hXyCpRG/1pl-rash.png" width=600 height=300 />
 ]
 
 --
 
 - Para corresponder melhor à linha de rastreamento empírica, precisamos aumentar a inclinação da **IRF**. 
-  - Para isso, vamos modificar nossa IRF e demonstrar o modelo de **1-PL**.
+  - Para isso, vamos modificar nossa **IRF** e demonstrar o modelo de **1-PL**.
 
 ---
 # 1-Parameter Logistic Model
-- Para isso, revisamos o expoente na Equação IRF. Esse expoente, 
+- Para isso, revisamos o expoente na equação da **IRF**. Esse expoente, 
 $$
 (\theta – \delta_j)
 $$
@@ -424,25 +434,25 @@ $$
 \alpha(\theta – \delta_j)
 $$
 --
-- Como **α** está diretamente relacionado à inclinação da linha de regressão logit, uma alteração em **α** leva a uma alteração na inclinação da curva  
-  - Ou seja, a inclinação da IRF pode ser modificada alterando-se o valor de **α**
+- Como **α** está diretamente relacionado à inclinação da linha de regressão logística, uma alteração em **α** leva a uma alteração na inclinação da curva  
+  - Ou seja, a inclinação da **IRF** pode ser modificada alterando-se o valor de **α**.
   
 ---
 # 1-Parameter Logistic Model
 
-- Podemos reescrever a equação IRF para incorporar explicitamente o **α** Isso produz o modelo logístico de 1 parâmetro (1PL).
+- Podemos reescrever a equação **IRF** para incorporar explicitamente o **α** Isso produz o modelo logístico de 1 parâmetro (**1-PL**).
 
 $$
 p(x_j = 1 |\theta, \alpha, \delta_j) = \frac{e^{\alpha(\theta − \delta_j)}}{1 + e^{\alpha(\theta−\delta_j)}}
 $$
 --
 
-- **α** é conhecido como o parâmetro de discriminação do item.
+- **α** é conhecido como o parâmetro de **discriminação** do item.
 
 - Aumentar os valores de **α** tende a melhorar o ajuste do modelo de IRT aos dados.
 
 .center[
-<img src ="https://i.ibb.co/hXyCpRG/1pl-rash.png" width=425 height=200>
+<img src ="https://i.ibb.co/hXyCpRG/1pl-rash.png" width=425 height=225 />
 ]
 
 ???
@@ -458,17 +468,19 @@ Os itens com ALPHAs maiores (ou seja, linhas de regressão logit e IRFs mais ín
 - Para resumir, os modelos 1PL e Rasch exigem que os itens tenham um ALPHA constante, mas permitem que os itens sejam diferentes em suas localizações. No modelo Rasch, o ALPHA é constante em 1,0, enquanto no modelo 1PL o ALPHA constante não precisa ser igual a 1,0. 
 ---
 # Parâmetros IRT
-- De acordo com a teoria de resposta ao item, a **dificuldade** (DELTA) de um item descreve onde o item funciona ao longo da escala de habilidade. 
+- De acordo com a teoria de resposta ao item, a **dificuldade** (**δ**) de um item descreve onde o item está localizado ao longo da escala de habilidade. 
 
-  - Por exemplo, um item fácil funciona entre os examinandos com baixa habilidade e um item difícil funciona entre os examinandos com alta habilidade; portanto, a dificuldade é um índice de localização. 
+  - Por exemplo, um **item fácil** tem maior probabilidade de acerto entre os examinandos com baixa habilidade e um **item difícil** tem maior probabilidade de acerto entre os examinandos com alta habilidade; portanto, a **dificuldade** é um índice de localização. 
 
 .center[
-<img src ="https://i.ibb.co/892MSTc/difficulty.png" width=375 height=150>
+<img src ="https://i.ibb.co/892MSTc/difficulty.png" width=375 height=150 />
 ]  
 
 --
-- A segunda propriedade é a **discriminação** **α**, isto é, a capacidade de um item diferenciar os indivíduos com habilidades diferentes em relação ao item em questão. 
+- Enquanto a **discriminação** **α**, isto é, a **capacidade de um item diferenciar** os indivíduos com habilidades diferentes em relação ao item em questão. 
+
   - Essa propriedade reflete essencialmente a inclinação da IRF. 
+  
   - Quanto mais íngreme for a curva, melhor é a capacidade de **discriminação** de um item. 
 
 ???
@@ -477,11 +489,13 @@ Deve-se observar que essas duas propriedades não dizem nada sobre se o item rea
 ---
 # Parâmetros IRT
 - O parâmetro de **dificuldade** pode ser descrito nos seguintes níveis:
+
   - muito fácil
   - fácil
   - médio
   - difícil
   - muito difícil
+  
 --
 
 - O parâmetro de **discriminação** pode ser descrito nos seguintes níveis:
@@ -491,20 +505,22 @@ Deve-se observar que essas duas propriedades não dizem nada sobre se o item rea
   - alto
   - perfeito
   
-.center[**Vamos agora incorporar a informação de o quão bem um item **diferencia/discrimina** nossos indívudos con diferentes níveis de habilidade **θ** no nosso contínuo latente com o modelo de 2PL**]
+--
+
+.center[Vamos agora incorporar a **informação** de o quão bem um item **diferencia/discrimina** nossos indíviduos com diferentes níveis de habilidade **θ** no nosso **continuum latente** com o modelo de **2-PL**]
 
 ---
 # 2-parameter logistic model (2PL)
 
-- Ainda usamos a distância entre as localizações da pessoa e do item (THETA - DELTA_j), mas agora ponderamos essa distância de acordo com a capacidade de discriminação do item. 
+- Ainda usamos a **distância** entre as localizações da pessoa e do item (**θ - δj**), mas agora ponderamos essa distância de acordo com a capacidade de **discriminação** do item. 
 
-  - Assim, a probabilidade de uma resposta de 1 é uma função de quão bem o item diferencia os entrevistados localizados em diferentes pontos do continuum latente.
+  - Assim, a probabilidade de uma resposta de 1 é uma função de quão bem o item **diferencia** os entrevistados **localizados** em diferentes pontos do **continuum latente**.
   
 --
 
-- Ao levar em conta a capacidade de discriminação de um item, estamos relaxando a restrição de que os itens devem compartilhar uma inclinação comum. 
+- Ao levar em conta a **capacidade de discriminação** de um item, estamos relaxando a **restrição** de que os itens devem compartilhar uma **inclinação comum**. 
   
-  - Quando isso é feito, o modelo 1PL se torna o modelo logístico de dois parâmetros (2PL).
+  - Quando isso é feito, o modelo **1-PL** se torna o modelo logístico de **dois parâmetros** (2-PL).
 
 $$
 p(x_j = 1 |\theta, \alpha_j, \delta_j) = \frac{e^{\alpha_j(\theta − \delta_j)}}{1 + e^{\alpha_j(\theta−\delta_j)}}
@@ -515,12 +531,12 @@ Como no caso do modelo 1PL, os dados para o 2PL precisam ser dicotômicos (0 ou 
 ---
 # 2-parameter logistic model
 
-- A figura abaixo contém as **IRF**s de cinco itens com discriminações diferentes, mas localizadas no mesmo ponto. 
+- A figura abaixo contém as **IRF**s de **cinco itens** com **discriminações diferentes**, mas localizadas no mesmo ponto. 
  
 - À medida que os valores de **α** mudam de **0.5** para **3.0**, as **IRF**s correspondentes tornam-se progressivamente mais **íngremes**. 
 
 .center[
-<img src="https://i.ibb.co/tXvZNLQ/2PL.png" height=400 width=525>
+<img src="https://i.ibb.co/tXvZNLQ/2PL.png" height=400 width=525 />
 ]
 ???
 Esse local comum corresponde ao ponto de interseção de todas as cinco IRFs e é δ1 = δ2 = δ3 = δ4 = δ5 = 1,0.
@@ -534,42 +550,42 @@ em que θ é o parâmetro de localização da pessoa e δj e αj são os parâme
 ---
 # 2-parameter logistic model
 
-- À medida que o valor de **ALPHA_j** aumenta, a inclinação da **IRF** se torna mais íngreme e a capacidade do item de discriminar entre indivíduos aumenta.
+- À medida que o valor de **αj** aumenta, a inclinação da **IRF** se torna mais íngreme e a capacidade do item de discriminar entre indivíduos aumenta.
 
-  - O ponto de inclinação máxima do item é onde o item discrimina com mais eficácia os respondentes.
+  - O ponto de **inclinação máxima** do item é onde o item **discrimina com mais eficácia** os respondentes.
 
 --
 
 - Teoricamente, o parâmetro de discriminação pode variar de **-Inf** a **+Inf**. 
-  - Entretanto, valores razoavelmente "bons" de **ALPHA_j** variam de aproximadamente de **0.8** à **2.5**. 
+  - Entretanto, valores razoavelmente "bons" de **αj** variam de aproximadamente de **0.8** à **2.5** (Finch 2015). 
 
 --
 
-- Um **ALPHA_j** negativo reflete um item em que os indivíduos com **THETA**s mais baixos têm maior probabilidade de obter uma resposta 1 do que os indivíduos com **THETA**s mais altos.
-  - Dessa forma, um item com um **ALPHA_j** negativo está se comportando de forma contraintuitiva.
+- Um **αj** negativo reflete um item em que os indivíduos com **θ**s mais baixos têm maior probabilidade de obter uma resposta 1 do que os indivíduos com **θ**s mais altos.
+  - Dessa forma, um item com um **αj** negativo está se comportando de forma contraintuitiva.
 
 ???
-- O αj de um item caracteriza a capacidade do item de diferenciar entre indivíduos localizados em diferentes pontos do continuum **θ**. 
+- O **αj** de um item caracteriza a capacidade do item de diferenciar entre indivíduos localizados em diferentes pontos do continuum **θ**. 
 
 ---
 # 3-parameter logistic model
-- Agora vamos falar de um modelo para lidar com a chance de sucesso em um item: **3PL** 
+- Agora vamos falar de um modelo para lidar com a chance de sucesso em um item: **3-PL** 
 
   - Essa chance de sucesso é refletida em uma **IRF** com uma assíntota inferior diferente de **zero**.
 
 --
 
-- Não surpreendemente, podemos esperar que os indivíduos na extremidade inferior do continuum latente tenham uma maior probabilidade de fornecer uma resposta **0**.
+- Não surpreendemente, podemos esperar que os indivíduos na **extremidade inferior do continuum latente** tenham uma **maior probabilidade** de fornecer uma resposta **0**.
 
 --
 
-- No nosso exame de matemática de múltipla-escolha, alguns indivíduos com baixa proficiência poderão selecionar a opção correta simplesmente adivinhando.
-  - Nesses casos, a IRF tem uma assíntota inferior com algum valor diferente de zero e é isso que o modelo de **3PL** aborda: a assíntota inferior diferente de **zero**
+- No nosso exame de matemática de múltipla-escolha, alguns indivíduos com baixa proficiência poderão selecionar a opção correta simplesmente **adivinhando**.
+  - Nesses casos, a **IRF** tem uma assíntota inferior com algum valor diferente de zero e é isso que o modelo de **3-PL** aborda: a assíntota inferior diferente de **zero**
 
 --
 
-- Para desenvolver o modelo de **3PL**, precisamos nos perguntar: "Qual deve ser a probabilidade de uma resposta 1
-em um item devido apenas ao acaso?" Vamos simbolizar essa probabilidade como: 
+- Para desenvolver o modelo de **3-PL**, precisamos nos perguntar: **"Qual deve ser a probabilidade de uma resposta 1
+em um item devido apenas ao acaso?"** Vamos simbolizar essa probabilidade como: 
 
 $$
 \chi_j
@@ -578,8 +594,8 @@ $$
 Em outras palavras, a probabilidade de uma resposta de 1 para um indivíduo com uma localização infinitamente baixa é χj.
 ---
 # 3-parameter logistic model
-Para determinar a função de resposta de adivinhação pseudoaleatória, precisamos considerar **χj** e a probabilidade
-de uma resposta de 0, considerando o modelo 2PL.
+Para determinar a função de resposta de **adivinhação pseudoaleatória**, precisamos considerar **χj** e a **probabilidade**
+de uma resposta de 0, considerando o modelo **2-PL**.
 
 $$
 \chi_j[1-p_j]
@@ -590,11 +606,11 @@ $$
 
 --
 
-- À medida que a habilidade **θ** vai para -Inf, **p_j** se aproxima de 0. Por outro lado, à medida que a habilidade **θ** vai para +Inf, **p_j** se aproxima de 1.0, mantendo-se todas as outras condições iguais.
+- À medida que a habilidade **θ** vai para **-Inf**, **p_j** se aproxima de 0. Por outro lado, à medida que a habilidade **θ** vai para **+Inf**, **p_j** se aproxima de 1.0, mantendo-se todas as outras condições iguais.
 
 --
 
-- Com o modelo 3PL, há três parâmetros que caracterizam o item j:
+- Com o modelo **3-PL**, há três parâmetros que caracterizam o item **j**:
 $$
 p(x_j = 1 |\theta, \alpha_j, \delta_j, \chi_j) = \chi_j + (1-\chi_j) \frac{e^{\alpha_j(\theta − \delta_j)}}{1 + e^{\alpha_j(\theta−\delta_j)}}
 $$
@@ -613,18 +629,19 @@ Uma implicação dessa compressão é que ela reduz efetivamente a inclinação 
 ---
 # 3-parameter logistic model
 
-- Em suma, a função do **χ** é refletir que alguns indivíduos com **θ**s infinitamente baixos podem obter uma resposta de 1 quando, de acordo com o 2PL, não deveriam.
+- Em suma, a função do **χ** é refletir que alguns indivíduos com **θ**s infinitamente baixos podem obter uma resposta de 1 quando, de acordo com o **2-PL**, não deveriam.
 
 --
 
-- Embora  **χj** seja considerado um parâmetro do item, ele pode na verdade refletir uma característica da pessoa (ou seja, outro parâmetro da pessoa) ou, pelo menos, uma interação entre as características da pessoa e do item.  
+- Embora  **χj** seja considerado um parâmetro do item, ele pode na verdade refletir uma **característica da pessoa** (ou seja, outro parâmetro da pessoa) ou, pelo menos, uma interação entre as características da pessoa e do item.  
 
-  - As características pessoais incluem não apenas o **θ** de uma pessoa, mas também sua perspicácia nos testes e tendências de "tomar riscos". Esses dois fatores são variáveis latentes tangenciais.
+  - As características pessoais incluem não apenas o **θ** de uma pessoa, mas também sua **perspicácia nos testes ou tendências de "tomar riscos"**. Esses dois fatores são **variáveis latentes tangenciais**.
 
 --
 
-- **Problemas de estimação no 3PL**: A superfície de log likelihood de um item com três parâmetros de item exigiria quatro dimensões para representá-la graficamente. Em alguns casos, a distinção entre essas várias superfícies pode ser problemática (Samejima 1973). 
-  - Por exemplo, se não houver dados suficientes na extremidade inferior do continuum, pode haver vários conjuntos de **αj, δj e χj** que representem o ponto máximo dos dados.
+- **Problemas de estimação no 3PL**: A superfície de log-likelihood de um item com três parâmetros de item exigiria quatro dimensões para representá-la graficamente. 
+  - Em alguns casos, a distinção entre essas várias superfícies pode ser problemática (Samejima 1973). 
+  - Por exemplo, se não houver **dados suficientes na extremidade inferior do continuum**, pode haver vários conjuntos de **αj, δj e χj** que representem o ponto máximo dos dados.
 
 ???
 Samejima (1973a) mostrou que não há uma solução única para θ para cada padrão de resposta possível no modelo de três parâmetros. Para esses padrões de resposta problemáticos, a função de probabilidade pode ter mais de um máximo, ou seja, um máximo local e não global.
@@ -671,7 +688,7 @@ Como o DIF examina as diferenças nas probabilidades condicionais de Y entre os 
 - Uma explicação porque um item apresenta DIF é problemas de multidimensionalidade. 
   - O DIF pode ser conceituado como uma forma de multidimensionalidade que ocorre quando um item mede várias dimensões e quando os grupos manifestos diferem em suas localizações relativas uns aos outros nessa(s) variável(eis) latente(s) não primária(s).
 ???
-Na demonstração empírica a seguir, vamos sempre cofificar o grupo de Referência como 0, e o grupo Foca como 1 e vamos trabalhar apenas com DIF com dados de resposta dicotômica.
+Na demonstração empírica a seguir, vamos sempre codificar o grupo de Referência como 0, e o grupo Foca como 1 e vamos trabalhar apenas com DIF com dados de resposta dicotômica.
 ---
 # Funcionamento diferencial do item (DIF)
 
