@@ -92,7 +92,7 @@ psychometric::alpha(polTF)
 # Item.total:  correlation between items and the total score.
 # Item.Tot.woi: correlation between items and the total score by omitting the item.
 # Difficulty: proportion of correct responses.
-# Discrimination: values above 0.40 are satisfactory and values below 0.19 suggest potential deletion.
+# Discrimination: values above 0.40 are satisfactory and values below 0.19 suggest removal,
 
 ?psychometric::item.exam # For each column value
 
@@ -122,10 +122,15 @@ summary(fitMC) # 'value' column is each item difficulty + std.err
 # TRANSFORMING PK TF FOR RASH MODEL
 # # --------------------------------------------------------------------------------------
 require(dplyr)
-gmo <- gmo %>% mutate(pkT_medmarij_01=pkT_medmarij, pkF_nafta_01=pkF_nafta, pkT_parisagree_01=pkT_parisagree,
-                      pkF_guantanamo_01=pkF_guantanamo, pkT_gdpgrow_01=pkT_gdpgrow, pkF_deficit2018_01=pkF_deficit2018) %>% 
+gmo <- gmo %>% mutate(pkT_medmarij_01=pkT_medmarij, 
+                      pkF_nafta_01=pkF_nafta, 
+                      pkT_parisagree_01=pkT_parisagree,
+                      pkF_guantanamo_01=pkF_guantanamo, 
+                      pkT_gdpgrow_01=pkT_gdpgrow, 
+                      pkF_deficit2018_01=pkF_deficit2018) %>% 
   mutate_at(c("pkT_medmarij_01","pkF_nafta_01", "pkT_parisagree_01", "pkF_guantanamo_01",
-                           "pkT_gdpgrow_01", "pkF_deficit2018_01"), ~as.numeric(dplyr::recode(., `-2`=0, `-1`=0, `1`=1, `2`=1)))
+                           "pkT_gdpgrow_01", "pkF_deficit2018_01"), 
+            ~as.numeric(dplyr::recode(., `-2`=0, `-1`=0, `1`=1, `2`=1)))
 
 polTF_01<-subset(gmo, select=c(pkT_medmarij_01, pkF_nafta_01, pkT_parisagree_01, 
                             pkF_guantanamo_01, pkF_deficit2018_01, pkT_gdpgrow_01))
@@ -215,11 +220,11 @@ plot(fit2MC, type=c("IIC"), items=0)
 plot(fit2TF, type=c("IIC"), items=0) 
 
 dev.off()
+
 # # --------------------------------------------------------------------------------------
 # Estimate a three-parameter model (TPM or 3-PL)
-# Birnbaum, A. (1968). Some latent trait models and their use in inferring an examinee's ability. 
-# In Lord and Novick (Eds.), Statistical Theories of Mental Test Scores, 397–479. Reading, MA: Addison-Wesley.
 # # --------------------------------------------------------------------------------------
+
 # The 3-parameter model is usually employed to handle the phenomenon of 
 # non-random guessing in the case of difficult items.
 fit3MC <- ltm::tpm(polMC, type=c("latent.trait"), max.guessing=.5)
@@ -235,8 +240,8 @@ plot(fit3TF, type=c("ICC"))
 plot(fit3TF, type=c("IIC"))
 
 # Warning: The 3-parameter model is known to have numerical problems like non-convergence,
-# especially for the guessing parameters. These problems usually result in a zero estimate for 
-# some guessing parameters and/or in a non positive definite Hessian matrix.
+# especially for the guessing parameters. These problems usually result in a zero estimate 
+# for some guessing parameters and/or in a non positive definite Hessian matrix.
 ### For mathematical details: https://www.jstatsoft.org/article/view/v017i05
 
 # # --------------------------------------------------------------------------------------
@@ -252,8 +257,9 @@ genderMC<-subset(gmo, select=c("pk_medmarij", "pk_nafta", "pk_parisagree", "pk_g
                                "pk_deficit2018", "pk_gdpgrow", "female", "rep"))
 genderMC<-na.omit(genderMC)
 
-genderTF<-subset(gmo, select=c("pkT_medmarij_01", "pkF_nafta_01", "pkT_parisagree_01", "pkF_guantanamo_01", 
-                               "pkF_deficit2018_01", "pkT_gdpgrow_01", "female", "rep"))
+genderTF<-subset(gmo, select=c("pkT_medmarij_01", "pkF_nafta_01", "pkT_parisagree_01", 
+                               "pkF_guantanamo_01", "pkF_deficit2018_01", "pkT_gdpgrow_01", 
+                               "female", "rep"))
 genderTF<-na.omit(genderTF)
              
 know.scaleMC <- apply(genderMC, 1, mean) 
@@ -286,17 +292,19 @@ PIDTF<-genderTF$rep # rep = 1
 # The function used, difMH, requires that the dataset appear first, 
 # followed by the name of the grouping variable, in this case gender and rep.
 
-# One of the genders must be identified as the focal group. We selected males (coded as 1 in the data).
+# One of the genders must be identified as the focal group. 
+# We selected males (coded as 1 in the data).
 names(genderMC)
 
-#  We requested that the matching scale scores be purified. 
-# This means that an iterative process is used so that the final score on which individuals are matched. 
-# When nonpurified items are included in the matching score, 
-# the accuracy of DIF detection can be greatly diminished and false positives are more likely. 
+# We requested that the matching scale scores be purified. 
+# When nonpurified items are included in the matching score, the accuracy of DIF detection 
+# can be greatly diminished and false positives are more likely. 
 
-gender.MH <- difR::difMH(genderMC, group=femaleMC, focal.name=0, purify=TRUE, p.adjust.method = "BH")  
+gender.MH <- difR::difMH(genderMC, group=femaleMC, focal.name=0, purify=TRUE, 
+                         p.adjust.method = "BH")  
 print(gender.MH) # chi-square values (alphaMH), large values indicate DIF.
-# we see the log of the odds ratio for each item (alphaMH) as well as the ETS Δ mentioned previously (deltaMH).
+# we see the log of the odds ratio for each item (alphaMH) 
+# as well as the ETS Δ mentioned previously (deltaMH).
 
 # Finally, it is easy to obtain a graphical display for the MH chi-square test results, 
 # which provides an easy-to-interpret visual display. 
@@ -304,7 +312,8 @@ difR::plot.MH(gender.MH)
 
 # FOR PID
 # --------------------------------------------------------------------------------------
-PID.MH <- difR::difMH(genderMC, group=PIDMC, focal.name=0, purify=TRUE, p.adjust.method = "BH")  
+PID.MH <- difR::difMH(genderMC, group=PIDMC, focal.name=0, purify=TRUE, 
+                      p.adjust.method = "BH")  
 print(PID.MH) # chi-square values (alphaMH), large values indicate DIF.
 difR::plot.MH(PID.MH) # 
 
@@ -316,8 +325,8 @@ difR::plot.MH(PID.MH) #
 # # --------------------------------------------------------------------------------------
 # Note: here is also the 'lordif' package, that exclusively uses the logistic function. 
 
-# The logistic regression method (Swaminathan and Rogers, 1990) allows for detecting both uniform 
-# and non-uniform differential item functioning without requiring an item response model approach. 
+# The logistic regression method (Swaminathan & Rogers, 1990) allows for detecting both uniform 
+# and non-uniform DIF without requiring an item response model approach. 
 
 # It has an advantage over MH when the researcher is interested in checking the data for both 
 # uniform and nonuniform DIF, as it can easily be adapted for both. 
@@ -327,46 +336,60 @@ difR::plot.MH(PID.MH) #
 
 genderMClr<-genderMC[,1:6]
 
-dlgMC <- difR::difLogistic(genderMClr, group=femaleMC, focal.name=1, p.adjust.method = "BH", type="both") # nudif or udif
+dlgMC <- difR::difLogistic(genderMClr, group=femaleMC, focal.name=1, 
+                           p.adjust.method = "BH", type="both") # "nudif" or "udif"
 difR::print.Logistic(dlgMC)
 
-dlPIDMC <- difR::difLogistic(genderMClr, group=PIDMC, focal.name=1, p.adjust.method = "BH", type="both") # 
+dlPIDMC <- difR::difLogistic(genderMClr, group=PIDMC, focal.name=1, 
+                             p.adjust.method = "BH", type="both") # "nudif" or "udif"
 difR::print.Logistic(dlPIDMC)
 
 # The likelihood ratio statistics are displayed on the Y axis, for each item.
 # The detection threshold is displayed by a horizontal line, and items flagged as DIF are 
 # printed with the color defined by argument col.
 
-plot(dlgMC, plot="lrStat", itemFit = "best", pch = 8, number = F, col = "red", colIC = rep("black", 2), ltyIC = c(1, 2))
-plot(dlPIDMC, plot="lrStat", itemFit = "best", pch = 8, number = F, col = "red", colIC = rep("black", 2), ltyIC = c(1, 2))
+plot(dlgMC, plot="lrStat", itemFit = "best", 
+     pch = 8, number = F, col = "red", colIC = rep("black", 2), ltyIC = c(1, 2))
+
+plot(dlPIDMC, plot="lrStat", itemFit = "best", 
+     pch = 8, number = F, col = "red", colIC = rep("black", 2), ltyIC = c(1, 2))
 
 # # --------------------------------------------------------------------------------------
 genderTFlr<-genderTF[,1:6]
 
-dlgTF <- difR::difLogistic(genderTFlr, group=femaleTF, focal.name=1, p.adjust.method = "BH", type="both") # 
+dlgTF <- difR::difLogistic(genderTFlr, group=femaleTF, focal.name=1, 
+                           p.adjust.method = "BH", type="both")
 difR::print.Logistic(dlgTF)
 
-dlPIDTF <- difR::difLogistic(genderTFlr, group=PIDTF, focal.name=1, p.adjust.method = "BH", type="both") # 
+dlPIDTF <- difR::difLogistic(genderTFlr, group=PIDTF, focal.name=1, 
+                             p.adjust.method = "BH", type="both") 
 dlPIDTF
 
-plot(dlgTF, plot="lrStat", itemFit = "best", pch = 8, number = F, col = "red", colIC = rep("black", 2), ltyIC = c(1, 2))
-plot(dlPIDTF, plot="lrStat", itemFit = "best", pch = 8, number = F, col = "red", colIC = rep("black", 2), ltyIC = c(1, 2))
+plot(dlgTF, plot="lrStat", itemFit = "best", 
+     pch = 8, number = F, col = "red", colIC = rep("black", 2), ltyIC = c(1, 2))
+
+plot(dlPIDTF, plot="lrStat", itemFit = "best", 
+     pch = 8, number = F, col = "red", colIC = rep("black", 2), ltyIC = c(1, 2))
 
 # # --------------------------------------------------------------------------------------
 # Lord Chi-square DIF
 # # --------------------------------------------------------------------------------------
-lordMC.outG<-difR::difLord(genderMC, group="female", focal.name=1, purify=TRUE, model="1PL", p.adjust.method = "BH")
+lordMC.outG<-difR::difLord(genderMC, group="female", focal.name=1, purify=TRUE, 
+                           model="1PL", p.adjust.method = "BH")
 lordMC.outG
 plot(lordMC.outG)
 
-lordTF.outG<-difR::difLord(genderTF, group="female", focal.name=1, purify=TRUE, model="1PL", p.adjust.method = "BH")
+lordTF.outG<-difR::difLord(genderTF, group="female", focal.name=1, purify=TRUE, 
+                           model="1PL", p.adjust.method = "BH")
 lordTF.outG
 plot(lordTF.outG)
 
-lordMC.outR<-difR::difLord(genderMC, group="rep", focal.name=1, purify=TRUE, model="2PL", p.adjust.method = "BH")
+lordMC.outR<-difR::difLord(genderMC, group="rep", focal.name=1, purify=TRUE, 
+                           model="2PL", p.adjust.method = "BH")
 lordMC.outR
 
-lordTF.outR<-difR::difLord(genderTF, group="rep", focal.name=1, purify=TRUE, model="2PL", p.adjust.method = "BH")
+lordTF.outR<-difR::difLord(genderTF, group="rep", focal.name=1, purify=TRUE, 
+                           model="2PL", p.adjust.method = "BH")
 lordTF.outR
 
 
