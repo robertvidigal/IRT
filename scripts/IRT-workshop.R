@@ -1,20 +1,21 @@
 # # --------------------------------------------------------------------------------------
-# VII Workshop de Comportamento Político e Opinião Pública. 7 de Junho de 2023. 
+# VII Workshop de Comportamento Político e Opinião Pública. 
+# 7 de Junho de 2023. 
 # Minicurso de Teoria de Resposta ao Item (IRT). 
-# Robert Vidigal, PhD. Center for Social Media and Politics, NYU.
+# Robert Vidigal, PhD.
+# Center for Social Media and Politics, NYU.
 # # --------------------------------------------------------------------------------------
 rm(list=ls()); gc(full=T); objects() 
 set.seed(10012)
 
 # Data Collected in Sept 2018.
 gmo<-read.csv("~/Documents/IRT/data/GMO_MTurk_WORK-CLEAN.csv", header=TRUE)
-#write.csv(gmo, "~/Documents/IRT-Workshop/GMO_MTurk_WORK-CLEAN.csv", row.names=F)
 str(gmo); names(gmo)
 
 # # --------------------------------------------------------------------------------------
 # VARIABLES 
 # # --------------------------------------------------------------------------------------
-# Party ID (dummy)
+# Identidade Partidária
 table(gmo$dem)
 table(gmo$ind)
 table(gmo$rep)
@@ -30,8 +31,11 @@ table(gmo$edu) # (1) No high school to Doctoral Degree (8)
 table(gmo$collegeabove) # college and above = 1
 
 # # --------------------------------------------------------------------------------------
-# Conhecimento Politico
+# Conhecimento Político
 # # --------------------------------------------------------------------------------------
+# Dois tipos de pergunta de PK:
+# MC e T/F
+
 # Medical marijuana use is legal in over 30 US states. (T)
 table(gmo$pk_medmarij); table(gmo$pkT_medmarij) 
 
@@ -63,12 +67,13 @@ table(gmo$polknowMC)
 ### SUBSETS
 # # --------------------------------------------------------------------------------------
 polMC<-subset(gmo, select=c(pk_medmarij, pk_nafta, pk_parisagree, 
-                            pk_guantanamo, pk_deficit2018, pk_gdpgrow, polknowMC))
-psych::describe(polMC); polMC<-na.omit(polMC)
+                            pk_guantanamo, pk_deficit2018, pk_gdpgrow, 
+                            polknowMC))
+psych::describe(polMC); polMC<-na.omit(polMC) # Remover NAs
 
 polTF<-subset(gmo, select=c(pkT_medmarij, pkF_nafta, pkT_parisagree, 
                             pkF_guantanamo, pkF_deficit2018, pkT_gdpgrow, polknowTF))
-psych::describe(polTF); polTF<-na.omit(polTF)
+psych::describe(polTF); polTF<-na.omit(polTF) # Remover NAs
 
 ### CORRELATION TABLE
 # # --------------------------------------------------------------------------------------
@@ -79,10 +84,10 @@ pol.corTF <- cor(polTF, use="complete.obs")
 pol.corTF
 
 # # --------------------------------------------------------------------------------------
-# ITEM EXAM
+# ITEM-LEVEL EXAM
 # # --------------------------------------------------------------------------------------
-# Let's obtain some basic descriptive information about the items. All this information is
-# given by the **psychometric** package.
+# Let's obtain some basic descriptive information about the items. 
+# All this information is given by the **psychometric** package.
 psychometric::item.exam(polMC[,1:6], discrim=TRUE, y=polMC[,7])
 psychometric::item.exam(polTF[,1:6], discrim=TRUE, y=polTF[,7])
 
@@ -92,7 +97,7 @@ psychometric::alpha(polTF)
 # Item.total:  correlation between items and the total score.
 # Item.Tot.woi: correlation between items and the total score by omitting the item.
 # Difficulty: proportion of correct responses.
-# Discrimination: values above 0.40 are satisfactory and values below 0.19 suggest removal,
+# Discrimination: values above 0.40 are satisfactory and values below 0.19 suggest removal.
 
 ?psychometric::item.exam # For each column value
 
@@ -107,8 +112,7 @@ psych::describe(polTF); polTF<-na.omit(polTF)
 # # --------------------------------------------------------------------------------------
 # One-parameter IRT models (1-PL a.k.a. the Rasch Model)
 # # --------------------------------------------------------------------------------------
-
-# ltm package
+# "ltm" package
 
 # Discrimination fixed at 1 (not allowed to vary)
 fitMC <- ltm::rasch(polMC, constraint=cbind(ncol(polMC) +1, 1)) # N of cols, +1, 1 (fixed)
@@ -136,6 +140,7 @@ polTF_01<-subset(gmo, select=c(pkT_medmarij_01, pkF_nafta_01, pkT_parisagree_01,
                             pkF_guantanamo_01, pkF_deficit2018_01, pkT_gdpgrow_01))
 psych::describe(polTF_01); polTF<-na.omit(polTF_01)
 
+# Rasch para TF binário (0 ou 1)
 fitTF <- ltm::rasch(polTF_01, constraint=cbind(length(polTF_01) +1, 1)) # N of cols + 1, 1 (fixed)
 summary(fitTF) # 'value' column is each item difficulty + std.err
 
@@ -173,8 +178,10 @@ sqrt(var(theta.raschTF$score.dat$z1))
 
 # # --------------------------------------------------------------------------------------
 # 1-PL Model
+# # --------------------------------------------------------------------------------------
 fit1MC <- ltm::rasch(polMC)
 summary(fit1MC)
+plot(fitMC, type=c("ICC")) 
 
 # # --------------------------------------------------------------------------------------
 # Two-parameter IRT model (2-PL)
@@ -209,6 +216,7 @@ plot(fit2TF, type=c("ICC"), items=c(2,3,4,5)) # good items
 # For each item it gives the relative amount of info that the item yields, 
 # the highest are the most informative, if the slope is shallow, it does not help at all, 
 # because they do not detect any differences.
+par(mfrow=c(2,1))
 plot(fit2MC, type=c("IIC"), items=c(1,6))
 plot(fit2TF, type=c("IIC"), items=c(1,6))
 
@@ -227,16 +235,16 @@ dev.off()
 
 # The 3-parameter model is usually employed to handle the phenomenon of 
 # non-random guessing in the case of difficult items.
-fit3MC <- ltm::tpm(polMC, type=c("latent.trait"), max.guessing=.5)
+fit3MC <- ltm::tpm(polMC, type=c("latent.trait"), max.guessing=.25)
 fit3MC
-
 plot(fit3MC, type=c("ICC"))
-plot(fit3MC, type=c("IIC"))
 
-fit3TF <- ltm::tpm(polTF, type=c("latent.trait"), max.guessing=.5)
+fit3TF <- ltm::tpm(polTF, type=c("latent.trait"), max.guessing=.25)
 fit3TF
-
 plot(fit3TF, type=c("ICC"))
+
+par(mfrow=c(2,1))
+plot(fit3MC, type=c("IIC"))
 plot(fit3TF, type=c("IIC"))
 
 # Warning: The 3-parameter model is known to have numerical problems like non-convergence,
@@ -247,7 +255,6 @@ plot(fit3TF, type=c("IIC"))
 # # --------------------------------------------------------------------------------------
 # DIFFERENTIAL ITEM FUNCTIONING (DIF) METHODS
 # # --------------------------------------------------------------------------------------
-
 # uniform DIF (different item difficulty parameters)
 # non-uniform DIF (different item discrimination parameters)
 
@@ -255,12 +262,12 @@ plot(fit3TF, type=c("IIC"))
 # # -----------------------------------------------------------------------
 genderMC<-subset(gmo, select=c("pk_medmarij", "pk_nafta", "pk_parisagree", "pk_guantanamo", 
                                "pk_deficit2018", "pk_gdpgrow", "female", "rep"))
-genderMC<-na.omit(genderMC)
+genderMC<-na.omit(genderMC) # Remover NAs
 
 genderTF<-subset(gmo, select=c("pkT_medmarij_01", "pkF_nafta_01", "pkT_parisagree_01", 
                                "pkF_guantanamo_01", "pkF_deficit2018_01", "pkT_gdpgrow_01", 
                                "female", "rep"))
-genderTF<-na.omit(genderTF)
+genderTF<-na.omit(genderTF) # Remover NAs
              
 know.scaleMC <- apply(genderMC, 1, mean) 
 know.scaleTF <- apply(genderTF, 1, mean) 
@@ -272,7 +279,6 @@ sm::sm.density.compare(know.scaleMC, genderMC$rep, xlab="PID: Republican")
 
 sm::sm.density.compare(know.scaleTF, genderTF$female, xlab="Gender: Women")
 sm::sm.density.compare(know.scaleTF, genderTF$rep, xlab="PID: Republican")
-
 dev.off()
 
 # # --------------------------------------------------------------------------------------
@@ -282,6 +288,8 @@ dev.off()
 # Reference and Focal Groups
 # # --------------------------------------------------------------------------------------
 femaleMC<-genderMC$female # women = 1 men = 0
+#genderMC<-subset(genderMC, select=c("pk_medmarij", "pk_nafta", "pk_parisagree", "pk_guantanamo", 
+                           #    "pk_deficit2018", "pk_gdpgrow"))
 PIDMC<-genderMC$rep # rep = 1
 
 femaleTF<-genderTF$female # women = 1 men = 0
@@ -293,14 +301,14 @@ PIDTF<-genderTF$rep # rep = 1
 # followed by the name of the grouping variable, in this case gender and rep.
 
 # One of the genders must be identified as the focal group. 
-# We selected males (coded as 1 in the data).
+# We selected females (coded as 1 in the data).
 names(genderMC)
 
 # We requested that the matching scale scores be purified. 
 # When nonpurified items are included in the matching score, the accuracy of DIF detection 
 # can be greatly diminished and false positives are more likely. 
 
-gender.MH <- difR::difMH(genderMC, group=femaleMC, focal.name=0, purify=TRUE, 
+gender.MH <- difR::difMH(genderMC, group=femaleMC, focal.name=1, purify=TRUE, 
                          p.adjust.method = "BH")  
 print(gender.MH) # chi-square values (alphaMH), large values indicate DIF.
 # we see the log of the odds ratio for each item (alphaMH) 
@@ -312,8 +320,8 @@ difR::plot.MH(gender.MH)
 
 # FOR PID
 # --------------------------------------------------------------------------------------
-PID.MH <- difR::difMH(genderMC, group=PIDMC, focal.name=0, purify=TRUE, 
-                      p.adjust.method = "BH")  
+PID.MH <- difR::difMH(genderMC, group=PIDMC, focal.name=1, purify=TRUE, 
+                      p.adjust.method = "holm")  
 print(PID.MH) # chi-square values (alphaMH), large values indicate DIF.
 difR::plot.MH(PID.MH) # 
 
@@ -391,7 +399,6 @@ lordMC.outR
 lordTF.outR<-difR::difLord(genderTF, group="rep", focal.name=1, purify=TRUE, 
                            model="2PL", p.adjust.method = "BH")
 lordTF.outR
-
 
 # NEXT STEPS TO CONTINUE YOUR IRT JOURNEY
 # # --------------------------------------------------------------------------------------
